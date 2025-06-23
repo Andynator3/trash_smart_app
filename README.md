@@ -1,3 +1,5 @@
+<h3>Compte Rendu</h3>
+<img src="captures/ProjectStructure-1.jpg">
 # trash_smart_app
 
 Une application qui permet la gestion des boubelles connectées
