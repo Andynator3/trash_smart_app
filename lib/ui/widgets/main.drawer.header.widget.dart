@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/bloc_themes/theme.bloc.dart';
+import '../../blocs/bloc_themes/theme.event.dart';
 
 class MainDrawerHeader extends StatelessWidget {
   const MainDrawerHeader({Key? key}) : super(key: key);
@@ -16,10 +19,12 @@ class MainDrawerHeader extends StatelessWidget {
         children:  [
           const CircleAvatar(
             radius: 40,
-            backgroundImage: AssetImage("images/profile.jpg"),
+            backgroundImage: AssetImage("images/user-1.png"),
           ),
           IconButton(
-              onPressed: (){},
+              onPressed: (){
+                context.read<ThemeBloc>().add(SwitchThemeEvent());
+              },
               icon: const Icon(Icons.settings)
           )
         ],

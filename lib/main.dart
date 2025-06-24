@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:trash_smart_app/ui/pages/home.page.dart';
-import 'package:trash_smart_app/ui/pages/trash.page.dart';
-import 'package:trash_smart_app/ui/pages/trashcan.page.dart';
-import 'package:trash_smart_app/ui/pages/users.page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trash_smart_app/ui/pages/root.view.dart';
+
+import 'blocs/bloc_themes/theme.bloc.dart';
+
 
 // This is the entry point of the application
 void main() {
@@ -15,30 +16,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    return const RootView();
-  }
-
-}
-
-class RootView extends StatelessWidget {
-  const RootView({Key? key}) : super(key: key);
-
-  //the roots of the pages.
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          primarySwatch: Colors.lightBlue
-      ),
-      routes: {
-        "/" : (context)=> const HomePage(),
-        "/users" : (context)=> const UsersPage(),
-        "/trashcan" : (context)=> const TrashCanPage(),
-        "/trash" : (context)=> const TrashPage(),
-      },
-      initialRoute: "/",
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context)=>ThemeBloc()),
+        ],
+        child: const RootView()
     );
   }
+
+
 }
+
+
 
 
 
