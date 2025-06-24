@@ -1,5 +1,6 @@
 <h3>Compte Rendu</h3>
 <img src="captures/ProjectStructure-1.jpg">
+
 # trash_smart_app
 
 Une application qui permet la gestion des boubelles connectées
@@ -16,3 +17,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+

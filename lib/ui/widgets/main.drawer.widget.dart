@@ -12,8 +12,8 @@ class MainDrawer extends StatelessWidget {
     List<dynamic> menus = [
       {"title":"Home", "route":"/", "leadingIcon":Icons.home, "trailingIcon":Icons.arrow_forward},
       {"title":"Users", "route":"/users", "leadingIcon":Icons.person, "trailingIcon":Icons.arrow_forward},
-      {"title":"Trash Can", "route":"/trashcan", "leadingIcon":Icons.table_chart, "trailingIcon":Icons.arrow_forward},
-      {"title":"Trash", "route":"/trash", "leadingIcon":Icons.tab, "trailingIcon":Icons.arrow_forward}
+      {"title":"Trashcan", "route":"/trashcan", "leadingIcon":Icons.restore_from_trash_outlined, "trailingIcon":Icons.arrow_forward},
+      {"title":"Trash", "route":"/trash", "leadingIcon":Icons.restore_from_trash, "trailingIcon":Icons.arrow_forward}
 
     ];
     return  Drawer(
