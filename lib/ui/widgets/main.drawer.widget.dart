@@ -2,50 +2,49 @@ import 'package:flutter/material.dart';
 
 import 'drawer.item.widget.dart';
 import 'main.drawer.header.widget.dart';
+import '../../../models/drawer_item.model.dart';
+
 
 class MainDrawer extends StatelessWidget {
+  // 2. La liste est sortie du build et définie en constante
+  final List<DrawerItem> menus = const [
+    DrawerItem(title: "Accueil", route: "/", leadingIcon: Icons.home, trailingIcon: Icons.arrow_forward),
+    DrawerItem(title: "Utilisateurs", route: "/users", leadingIcon: Icons.person, trailingIcon: Icons.arrow_forward),
+    DrawerItem(title: "Poubelles", route: "/trashcan", leadingIcon: Icons.restore_from_trash_outlined, trailingIcon: Icons.arrow_forward),
+    DrawerItem(title: "Déchets", route: "/trash", leadingIcon: Icons.restore_from_trash, trailingIcon: Icons.arrow_forward)
+  ];
+
   const MainDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Put the menu in an  Array
-    List<dynamic> menus = [
-      {"title":"Home", "route":"/", "leadingIcon":Icons.home, "trailingIcon":Icons.arrow_forward},
-      {"title":"Users", "route":"/users", "leadingIcon":Icons.person, "trailingIcon":Icons.arrow_forward},
-      {"title":"Trashcan", "route":"/trashcan", "leadingIcon":Icons.restore_from_trash_outlined, "trailingIcon":Icons.arrow_forward},
-      {"title":"Trash", "route":"/trash", "leadingIcon":Icons.restore_from_trash, "trailingIcon":Icons.arrow_forward}
-
-    ];
-    return  Drawer(
+    return Drawer(
       child: Column(
-        children:  [
+        children: [
           const MainDrawerHeader(),
           Expanded(
-                // Loop
-              child: ListView.separated(
-                 itemBuilder: (context, index){
-                   // Pass parameters to DrawerItemWidget
-                    return DrawerItemWidget(
-                        title: menus[index]["title"],
-                        leadingIcon: menus[index]["leadingIcon"],
-                        trailingIcon: menus[index]["trailingIcon"],
-                        onAction: (){
-                          // Close the menu
-                          Navigator.pop(context);
-                          // Open the menu
-                          Navigator.pushNamed(context, menus[index]["route"]);
-                        }
-                    );
+            child: ListView.separated(
+              itemCount: menus.length,
+              itemBuilder: (context, index) {
+                // 3. Récupération de l'objet typé
+                final menu = menus[index];
+
+                return DrawerItemWidget(
+                  title: menu.title,
+                  leadingIcon: menu.leadingIcon,
+                  trailingIcon: menu.trailingIcon,
+                  onAction: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, menu.route);
                   },
-                  separatorBuilder: (context, index){
-                    return const Divider(height: 5,);
-                  },
-                  itemCount: menus.length
-              )
+                );
+              },
+              // 4. Syntaxe allégée pour le séparateur
+              separatorBuilder: (context, index) => const Divider(height: 5),
+            ),
           )
         ],
       ),
     );
-
   }
 }
