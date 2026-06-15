@@ -1,7 +1,3 @@
+abstract class UsersEvent {}
+class LoadMyProfile extends UsersEvent {}
 
-/*abstract class UsersEvent {}
-
-class SearchUsers extends UsersEvent {
-
-}
-*/

@@ -1,18 +1,13 @@
-//import '../../models/users.model.dart';
+import '../../models/users.model.dart';
 
-/*abstract class UsersState {}
-
-class UsersInitialState extends UsersState {}
-
-class UsersLoadingState extends UsersState {}
-
-class UsersLoadedState extends UsersState {
-  final List<Users> users;
-  UsersLoadedState(this.users);
+abstract class UsersState {}
+class UsersInitial extends UsersState {}
+class UsersLoading extends UsersState {}
+class UsersLoaded extends UsersState {
+  final UserModel user;
+  UsersLoaded(this.user);
 }
-
-class UsersErrorState extends UsersState {
+class UsersError extends UsersState {
   final String message;
-  UsersErrorState(this.message);
+  UsersError(this.message);
 }
-*/
