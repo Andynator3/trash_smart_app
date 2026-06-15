@@ -1,42 +1,57 @@
-<h3>Compte Rendu</h3>
-<img src="captures/ProjectStructure-1.jpg">
+# TrashSmart - Application Mobile Éco-Citoyenne
 
-Voici une explication du déroulement de l'application
-1) Création de la page principale Home Page :
-  - Classe RootView 
-  - Page home.page.dart
-2)Création d’un Menu 
-- Widget main.drawer.dart pour la classe MainDrawer contenant le menu, le profile et la liste des styles.
-- Widget main.drawer.header.dart pour la classe MainDrawerHeader qui contient le profile
-  - Widget drawer.item.dart pour la classe DrawerItem qui contient la liste des styles
-3) Création des  pages :
-   - UsersPage, TrashcanPage, TrashPage :
-Une application mobile dont le menu est bien paramétré, un DrawerHeader qui est séparé, les éléments du menu qui sont séparés dans des widgets, le menu lui-même se trouve dans un tableau, dans le MainHeader, ce qui permettra d’ajouter facilement un nouveau menu.
-4) Création de  thèmes avec Bloc :
-  -  Fichier themes.dart
-  - Ajout de dépendances Bloc et Flutter_Bloc
-  - Création des fichiers theme.event.dart, theme.state.dart, theme.bloc.dart,
-  - Dans le fichier RootView : 
-- ajout de themeBloc et themeState dans BlocBuilder
-- Ajout de ThemeData dans MaterialApp
-  -Dans le fichier main : 
-- Ajout de MultiBlocProvider pour construire les BlocProviders, ThemeBloc etc.
+Application mobile Flutter développée dans le cadre du cursus Expert en Informatique et Système d'Information. TrashSmart permet aux citoyens de suivre leur impact écologique, de localiser des poubelles connectées et de gérer leurs points de récompense.
 
+---
 
-# trash_smart_app
+## 📊 Compte Rendu & Architecture Visuelle
 
-Une application qui permet la gestion des boubelles connectées
+![Structure du Projet](captures/ProjectStructure-1.jpg)
 
-## Getting Started
+### 1. Architecture des Pages & Navigation
+* **Page Principale (Home) :** Implémentation basée sur la classe globale `RootView` associée à la page `home.page.dart`.
+* **Menu Latéral Évolutif (Drawer) :** Conception hautement modulaire pour faciliter l'ajout ultérieur de nouvelles fonctionnalités :
+    * `main.drawer.dart` (`MainDrawer`) : Gestionnaire principal du menu contenant le profil utilisateur et l'accès aux différents styles.
+    * `main.drawer.header.dart` (`MainDrawerHeader`) : Composant isolé dédié à l'affichage du profil de l'utilisateur connecté.
+    * `drawer.item.dart` (`DrawerItemWidget`) : Widget générique pour l'affichage unitaire des éléments du menu, stockés dynamiquement dans un tableau (Array).
+* **Modules Métiers :** Déploiement des vues fonctionnelles `UsersPage`, `TrashcanPage` et `TrashPage`.
 
-This project is a starting point for a Flutter application.
+### 2. Gestion d'État Globale (Theming avec BLoC)
+L'application intègre une architecture réactive pour la gestion dynamique des thèmes graphiques :
+* **Dépendances :** Utilisation des packages officiels `bloc` et `flutter_bloc`.
+* **Composants BLoC :** Structuration en trois fichiers piliers : `theme.event.dart`, `theme.state.dart` et `theme.bloc.dart`.
+* **Injection & Initialisation :** Configuration du `MultiBlocProvider` à la racine de l'application dans le fichier `main.dart` pour instancier et propager le `ThemeBloc`.
+* **Consommation :** Intégration d'un `BlocBuilder` dans la classe `RootView` pour reconstruire dynamiquement la `MaterialApp` avec le `ThemeData` mis à jour.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Stack Technique Avancée
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* **Framework :** Flutter & Dart (Cible Android / iOS).
+* **Sécurité :** Authentification par jeton JWT (Rôles `USER` / `ADMIN`) stocké localement via `Flutter Secure Storage`.
+* **Réseau (Ops) :** Client HTTP `Dio` avec intercepteurs personnalisés pour injecter automatiquement le header `Authorization: Bearer <token>`.
+* **Configuration IP :** Connexion au serveur local Spring Boot via l'alias réseau Android `http://10.0.2.2:8081/api`.
 
+---
+
+## 🚀 Getting Started
+
+### Prérequis
+* Flutter SDK (Version stable)
+* Émulateur Android (SDK gphone x86) ou appareil physique de test
+* Backend Spring Boot actif sur le port `8081`
+
+### Installation
+```bash
+# Récupération des dépendances
+flutter pub get
+
+# Lancement de l'application en mode debug
+flutter run
+
+📚 Ressources Utiles Flutter
+Lab: Write your first Flutter app
+
+Cookbook: Useful Flutter samples
+
+Documentation officielle Flutter
